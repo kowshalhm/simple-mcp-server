@@ -4,7 +4,10 @@ import sqlite3
 from pydantic import BaseModel,Field
 from typing import Literal
 
-conn = sqlite3.connect("expenses.db",check_same_thread=False)
+import os
+
+DB_PATH = os.getenv("DB_PATH", "/tmp/expenses.db")
+conn = sqlite3.connect(DB_PATH, check_same_thread=False)
 cursor = conn.cursor()
 
 cursor.execute("""
